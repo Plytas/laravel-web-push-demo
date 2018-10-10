@@ -38,10 +38,11 @@
     notificationClick (event) {
       // console.log(event.notification)
 
-      if (event.action === 'some_action') {
+      if (event.action === 'open_page') {
+        self.clients.openWindow(event.data.page)
         // Do something...
       } else {
-        self.clients.openWindow('/')
+        self.clients.openWindow('/test')
       }
     },
 

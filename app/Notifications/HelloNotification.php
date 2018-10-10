@@ -45,7 +45,7 @@ class HelloNotification extends Notification
         return [
             'title' => 'Hello from Laravel!',
             'body' => 'Thank you for using our application.',
-            'action_url' => 'https://laravel.com',
+            'action_url' => 'https://google.lt',
             'created' => Carbon::now()->toIso8601String()
         ];
     }
@@ -55,15 +55,15 @@ class HelloNotification extends Notification
      *
      * @param  mixed  $notifiable
      * @param  mixed  $notification
-     * @return \Illuminate\Notifications\Messages\DatabaseMessage
+     * @return WebPushMessage
      */
     public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)
-            ->title('Hello from Laravel!')
+            ->title('Test notification')
             ->icon('/notification-icon.png')
-            ->body('Thank you for using our application.')
-            ->action('View app', 'view_app')
-            ->data(['id' => $notification->id]);
+            ->body('Bye bye!')
+            ->action('Open', 'open_page')
+            ->data(['id' => $notification->id, 'page' => 'https://factorio.com/']);
     }
 }
