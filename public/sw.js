@@ -45,7 +45,7 @@
       console.log(event, event.notification.actions, event.notification.data, event.notification.data.page)
 
       if (event.action === 'open_page') {
-        self.clients.openWindow(event.data.page)
+        self.clients.openWindow(event.notification.data.page)
         // Do something...
       } else {
         self.clients.openWindow('/test')
