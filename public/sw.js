@@ -3,12 +3,17 @@
 
   const WebPush = {
     init () {
+      self.addEventListener('install', this.install.bind(this))
       self.addEventListener('push', this.notificationPush.bind(this))
       self.addEventListener('notificationclick', this.notificationClick.bind(this))
       self.addEventListener('notificationclose', this.notificationClose.bind(this))
     },
 
-    /**
+    install (event) {
+      self.skipWaiting()
+    },
+
+  /**
      * Handle notification push event.
      *
      * https://developer.mozilla.org/en-US/docs/Web/Events/push
@@ -36,7 +41,8 @@
      * @param {NotificationEvent} event
      */
     notificationClick (event) {
-      // console.log(event.notification)
+      console.log('aaa')
+      console.log(event, event.notification.actions, event.notification.data, event.notification.data.page)
 
       if (event.action === 'open_page') {
         self.clients.openWindow(event.data.page)
